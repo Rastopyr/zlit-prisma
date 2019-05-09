@@ -8,12 +8,12 @@
   </summary>
 
   <ul>
-      <li>[Install git](#install-git)</li>
-      <li>[Install Docker](#install-docker)</li>
-      <li>[Install docker-compose(Ubuntu)](#install-docker-compose-ubuntu)</li>
-      <li>[Install dependencies](#install-dependencies)</li>
-      <li>[Install TS-Node](#install-ts-node)</li>
-      <li>[Start service](#start-service)</li>
+      <li><a href="#install-git">Install git</a></li>
+      <li><a href="#install-docker">Install Docker</a></li>
+      <li><a href="#install-docker-compose-ubuntu">Install docker-compose(Ubuntu)</a></li>
+      <li><a href="#install-dependencies">Install dependencies</a></li>
+      <li><a href="#install-ts-node">Install TS-Node</a></li>
+      <li><a href="#start-service">Start service</a></li>
     </ul>
 </details>
 
