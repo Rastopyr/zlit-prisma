@@ -1,0 +1,13 @@
+# Models for Chat applications
+
+# Type User
+# fields: id, nickname, createdAt
+# relations: Conversation(as conversation), Message(as author)
+
+# Type Conversation
+# fields: id, topic, startDate
+# relations: User(as participants), Message(as messages)
+
+# Type Message
+# fields: id, body, sendTime
+# relations: User(as participants), Message(as messages)

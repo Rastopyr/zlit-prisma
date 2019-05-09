@@ -1,0 +1,65 @@
+# Support ENUM type
+enum Episode {
+  NEWHOPE
+  EMPIRE
+  JEDI
+}
+
+enum Gender {
+  MALE
+  FEMALE
+}
+
+# Define table/collection with SDL
+type Person {
+  # Prisma supoprt default scalar types
+  # Manipulate with schema
+  id: ID! @id
+
+  # unique field
+  name: String! @unique
+
+  gender: Gender
+
+  # Boolean value
+  isDroid: Boolean! @default(value: false)
+
+  # default timestamp
+  createdAt: DateTime! @createdAt
+  updated: DateTime! @updatedAt
+
+  # inline value by enum
+  # model with default value
+  firstAppersIn: Episode! @default(value: NEWHOPE)
+
+  # relation N:1 with enum
+  appersIn: [Episode!]! @scalarList(strategy: RELATION)
+
+  # relation N:1 with relation table
+  starships: [Starship!]! @relation(link: TABLE)
+
+  # relation N:M with relation table
+  friends: [Person!]! @relation(link: TABLE)
+
+  # inline relation with secondary key
+  planet: Planet @relation(link: INLINE)
+}
+
+# Custom table name
+type Starship @db(name: "user") {
+  id: ID! @id
+
+  # rename field in db
+  name: String! @db(name: "starship_name")
+
+  # Scalar list relations
+  coordinates: [[Float!]!] @scalarList(strategy: RELATION)
+
+  speed: Int! @default(value: 100)
+}
+
+type Planet {
+  id: ID! @id
+  name: String! @unique
+  mass: Int! @default(value: 0)
+}

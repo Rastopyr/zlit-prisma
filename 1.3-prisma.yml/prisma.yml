@@ -1,0 +1,63 @@
+# Address of Prisma Server(API)
+# It encodes several pieces of information:
+# * Prisma server (`localhost:4466` in this example)
+# * Service name (`myservice` in this example)
+# * Stage (`dev` in this example)
+# NOTE: When service name and stage are set to `default`, they
+# can be omitted.
+# 
+# Meaning http://myserver.com/default/default can be written
+endpoint: http://localhost:4466/zlit/dev
+
+# Path to datamodel schema
+datamodel: datamodel.prisma
+# or list of datamodel schemas. Prisma will work
+# based on this datamodel files
+datamodel:
+  - datamodel1.prisma
+  - datamodel2.prisma
+
+# The secret is used to create JSON web tokens (JWTs). These
+# tokens need to be attached in the `Authorization` header
+# of HTTP requests made against the Prisma endpoint.
+# WARNING: If the secret is not provided, the Prisma API can
+# be accessed without authentication!
+secret: ${env:PRISMA_SECRET}
+
+# Generate a Prisma client in JavaScript and store in
+# a folder called `generated/prisma-client`.
+# It also downloads the Prisma GraphQL schema and stores it
+# in `generated/prisma.graphql`.
+generate:
+  - generator: javascript-client
+    output: ./generated/prisma-client/js
+  - generator: flow-client
+    output: ./generated/prisma-client/flow
+  - generator: typescript-client
+    output: ./generated/prisma-client/typescript
+  - generator: go-client
+    output: ./generated/prisma-client/go
+  - generator: graphql-schema
+    output: ./generated/
+  
+
+# A "post-deployment" hook that regenerates
+# the Prisma client.
+hooks:
+  post-deploy:
+    - prisma generate
+    - echo "Generation finished"
+
+# Executes a Node.js script to seed the database with
+# initial data.
+seed:
+  run: node data/seed.js
+
+# Used to provide variables which can be referenced elsewhere
+custom:
+  databaseType: relational
+
+# Specifies whether the Prisma service uses a document
+# or relational database.
+databaseType: ${self:custom.databaseType}
+

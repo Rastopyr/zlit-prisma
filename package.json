@@ -1,0 +1,13 @@
+{
+  "name": "zlit-prisma",
+  "version": "1.0.0",
+  "description": "Workshop about Prisma.io for zlit.events",
+  "main": "index.js",
+  "repository": "https://github.com/Rastopyr/zlit-prisma",
+  "author": "Rastopyr <rastopyr@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "graphql-yoga": "^1.17.4",
+    "prisma": "^1.32.0"
+  }
+}
