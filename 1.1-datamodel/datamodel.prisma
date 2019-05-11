@@ -10,4 +10,4 @@
 
 # Type Message
 # fields: id, body, sendTime
-# relations: User(as participants), Message(as messages)
+# relations: User(as author), Conversation(as conversation)

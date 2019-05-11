@@ -8,7 +8,6 @@ enum Episode {
 # Define table/collection with SDL
 type Person {
   # Prisma supoprt default scalar types
-  # Manipulate with schema
   id: ID! @id
 
   # unique field
@@ -26,6 +25,7 @@ type Person {
   firstAppersIn: Episode! @default(value: NEWHOPE)
 
   # relation N:1 with enum
+  # strategy is required
   appersIn: [Episode!]! @scalarList(strategy: RELATION)
 
   # relation N:1 with relation table
@@ -52,5 +52,7 @@ type Starship @db(name: "user") {
 type Planet {
   id: ID! @id
   name: String!
+
+  # integer data type
   mass: Int! @default(value: 0)
 }
